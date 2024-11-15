@@ -16,7 +16,6 @@ const HeadingCard = ({ heading, description,loading }: { heading: string; descri
       </View>
     );
   }
-  
 };
 
 const styles = StyleSheet.create({
@@ -25,8 +24,9 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 10,
     marginBottom: 15,  // Space between cards
-    width: '90%',  // Adjust width as a percentage of screen width
-    alignSelf: 'center',  // Centers the card horizontally
+    // width: '90%', 
+    marginHorizontal: 0,  // Adjust width as a percentage of screen width
+    alignSelf: 'stretch',  // Centers the card horizontally
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,

@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     paddingHorizontal:20,
     paddingTop:10,
     borderRadius: 10,
-     // Space between cards
+    marginBottom: 15, 
     width: '100%',  // Adjust width as a percentage of screen width
     alignSelf: 'center',  // Centers the card horizontally
     shadowColor: '#000',

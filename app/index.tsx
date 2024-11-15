@@ -63,11 +63,12 @@ function HomeScreen() {
   });
 
   // Separate state for each button press
-  const [pressedButton, setPressedButton] = useState(null);
+  const [pressedButton, setPressedButton] = useState<string | null>(null);
   const [title, onChangeTitle] = React.useState('');
   const [sTitle, onChangeSTitle] = React.useState('');
   const [tasks,setTasks] = useState<Tasks|[]>([])
-  const [headings,setHeadings] = useState<HeadingsType>([])
+  const [headings, setHeadings] = useState<HeadingsType>([]); // Initial empty array
+
   const [headingIndex,setHeadingIndex] = useState(0)
   const [loading,setLoading] = useState(true)
 
@@ -168,7 +169,7 @@ getHeading()
         <View style={styles.taskRow}>
           <View>
             <Text style={[styles.taskTitle, { fontFamily: 'Poppins_400Regular' }]}>Today's Task</Text>
-            <Text style={[styles.date, { fontFamily: 'Poppins_400Regular' }]}>{moment(Date.now()).format('dddd DD MMM ')}</Text>
+            <Text style={[styles.date, { fontFamily: 'Poppins_400Regular' }]}>{moment(Date.now()).format('dddd ,DD MMM ')}</Text>
           </View>
 
           <TouchableOpacity 
@@ -176,7 +177,7 @@ getHeading()
             onPress={handlePresentModalPress}
             activeOpacity={0.7}
           >
-            <Entypo name="plus" size={24} color="blue" />
+            <Entypo name="plus" size={18} color="blue" />
             <Text style={[styles.newTaskText, { fontFamily: 'Poppins_400Regular' }]}>New Task</Text>
           </TouchableOpacity>
         </View>
@@ -327,12 +328,12 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   taskTitle: {
-    fontSize: 24,
+    fontSize: 24, // Decreased from 24
     fontWeight: 'bold',
-    marginBottom: 5,
+    marginBottom: 4,
   },
   date: {
-    fontSize: 18,
+    fontSize: 16, // Decreased from 18
     color: '#555',
   },
   newTaskButton: {
@@ -340,32 +341,31 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#d3e4f1',
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 15,
   },
   newTaskText: {
     marginLeft: 10,
     color: 'blue',
-    fontSize: 18,
+    fontSize: 16, // Decreased from 18
   },
   newTaskContent: {
     marginTop: 20,
     fontSize: 18,
     color: '#333',
   },
-
-  // Notifications Section Styles
   notificationsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
     marginTop: 20,
+    marginBottom: 20,
   },
   notificationItem: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   notificationText: {
-    fontSize: 18,
+    fontSize: 16, // Optional: Decrease if needed
     color: '#333',
     marginRight: 10,
   },
@@ -382,10 +382,7 @@ const styles = StyleSheet.create({
   },
   bottomSheetContainer: {
     flex: 1,
-    
     width:"100%"
-
-
   },
   contentContainer: {
     flex: 1,
@@ -401,6 +398,5 @@ const styles = StyleSheet.create({
     width:"100%",
     display:"flex",
     rowGap:5
-
   }
 });
