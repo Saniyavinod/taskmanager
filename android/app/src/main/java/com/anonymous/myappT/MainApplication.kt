@@ -15,6 +15,7 @@ import com.facebook.soloader.SoLoader
 import expo.modules.ApplicationLifecycleDispatcher
 import expo.modules.ReactNativeHostWrapper
 
+import com.nozbe.watermelondb.WatermelonDBPackage;
 
 
 class MainApplication : Application(), ReactApplication {
@@ -54,4 +55,11 @@ class MainApplication : Application(), ReactApplication {
     super.onConfigurationChanged(newConfig)
     ApplicationLifecycleDispatcher.onConfigurationChanged(this, newConfig)
   }
+}
+@Override
+protected List<ReactPackage> getPackages() {
+  return Arrays.<ReactPackage>asList(
+    new MainReactPackage(),
+    new WatermelonDBPackage() // ⬅️ Here!
+  );
 }

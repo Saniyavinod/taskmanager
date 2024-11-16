@@ -168,6 +168,8 @@ android {
 
 dependencies {
 
+    
+
     implementation project(':watermelondb')
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
