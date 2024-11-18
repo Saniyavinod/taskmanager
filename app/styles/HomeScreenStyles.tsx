@@ -1,3 +1,4 @@
+import { WINDOW_HEIGHT } from '@gorhom/bottom-sheet';
 import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     container: {
@@ -74,7 +75,7 @@ export const styles = StyleSheet.create({
     },
     bottomSheetContainer: {
       flex: 1,
-      width:"100%"
+      width:"100%",
     },
     contentContainer: {
       flex: 1,

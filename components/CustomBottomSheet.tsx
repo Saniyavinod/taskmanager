@@ -5,7 +5,7 @@ import { styles } from '@/app/styles/HomeScreenStyles'
 interface Props{
 children:any;
 bottomSheetModalRef:any;
-handleSheetChanges:(item:any)=>void
+handleSheetChanges?:(item:any)=>void
 
 }
 const CustomBottomSheet:React.FC<Props> = ({bottomSheetModalRef,handleSheetChanges,children}) => {

@@ -1,12 +1,13 @@
-import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, StyleSheet, Touchable } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { Poppins_400Regular, useFonts } from '@expo-google-fonts/poppins';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 
 const TaskCard= ({ taskname,description }: { taskname: string; description: string }) => {
-  
+  const[choosed, setChoosed]=useState(false)
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
   });
@@ -20,9 +21,9 @@ const TaskCard= ({ taskname,description }: { taskname: string; description: stri
         <Text style={[styles.headingText, { fontFamily: 'Poppins_400Regular' }]}>{taskname}</Text>
       <Text style={[styles.descriptionText, { fontFamily: 'Poppins_400Regular' }]}>{description}</Text>
       </View>
-      <View style={styles.content21}>
+      <TouchableOpacity style={[styles.content21]} onPress={()=>setChoosed(true)}>
       <AntDesign name="checkcircle" size={24} color="black" />
-      </View>
+      </TouchableOpacity>
       </View>
       <View style={[styles.content2]}>
         <Text style={{ fontFamily: 'Poppins_400Regular' }}>Today  10:00 PM-11:45PM</Text>
