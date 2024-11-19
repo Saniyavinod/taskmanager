@@ -76,16 +76,28 @@ export const styles = StyleSheet.create({
     bottomSheetContainer: {
       flex: 1,
       width:"100%",
+   
+    },
+    AddTaskContainer:{
+      flex: 1,
+      width:"100%",
+     
     },
     contentContainer: {
       flex: 1,
       padding: 36,
       alignItems: 'center',
+      paddingBottom:600
+
+
+
     },
     input: {
       height: 40,
       borderWidth: 1,
       padding: 10,
+      marginBottom:10
+      
     },
     form:{
       width:"100%",

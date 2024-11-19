@@ -22,6 +22,9 @@ type Task = {
   title: string;
   sTitle: string;
   id: string;
+  date:Date;
+  startTime:Date;
+  endTime:Date;
 };
 
 SplashScreen.preventAutoHideAsync();
@@ -45,19 +48,21 @@ export default function HomeScreen() {
   });
   const router = useRouter();
   const { taskUpdated } = useLocalSearchParams();
+  const [refetch,setRefetch] = useState(true)
 
   // Load tasks from AsyncStorage
   const loadTasks = async () => {
     const storedTasks = await AsyncStorage.getItem('tasks');
     if (storedTasks) {
       setTasksList(JSON.parse(storedTasks));
+      console.log(storedTasks)
     }
   };
 
   // Load tasks on mount and when taskUpdated changes
   useEffect(() => {
     loadTasks();
-  }, [taskUpdated]);
+  }, [taskUpdated,refetch]);
 
   useEffect(() => {
     async function prepare() {
@@ -111,9 +116,18 @@ export default function HomeScreen() {
     setPressedButton(button);
   };
 
+  // useEffect(()=>{
+  //   const removeItem = async()=>{
+  //     await AsyncStorage.clear()
+  //   }
+  //   removeItem()
+  // },[])
+
   if (!fontsLoaded || !appIsReady) {
     return null;
   }
+
+ 
 
   return (
     <GestureHandlerRootView style={styles.bottomSheetContainer}>
@@ -176,9 +190,8 @@ export default function HomeScreen() {
               style={{ width: "100%" }}
               contentContainerStyle={{ paddingBottom: 100 }}
               data={tasksList}
-              keyExtractor={(item, index) => (item.id ? item.id.toString() : (index + 1).toString())}
               renderItem={({ item }) => (
-                <TaskCard taskname={item.title} description={item.sTitle} />
+                <TaskCard taskname={item.title} description={item.sTitle} taskId={item.id} setRefetch={setRefetch} date={item.date} startTime={item.startTime} endTime={item.endTime}/>
               )}
               ListEmptyComponent={
                 <Text style={{ textAlign: 'center' }}>No tasks available</Text>

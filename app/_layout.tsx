@@ -4,8 +4,10 @@ export default function RootLayout() {
   return (
     <Stack>
       <Stack.Screen name="index" options={{
-        headerTitle:""
-      }}/>
+        headerTitle:"",
+        headerShown:false
+      }}
+      />
     </Stack>
   );
 }
