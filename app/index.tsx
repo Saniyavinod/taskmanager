@@ -15,7 +15,7 @@ export default function App() {
         <Stack.Navigator
           initialRouteName="HomeScreen"
           screenOptions={{
-            headerShown: true, // Enables the header globally
+            headerShown: true, 
           }}
         >
           <Stack.Screen

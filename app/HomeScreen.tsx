@@ -116,12 +116,6 @@ export default function HomeScreen() {
     setPressedButton(button);
   };
 
-  // useEffect(()=>{
-  //   const removeItem = async()=>{
-  //     await AsyncStorage.clear()
-  //   }
-  //   removeItem()
-  // },[])
 
   if (!fontsLoaded || !appIsReady) {
     return null;
