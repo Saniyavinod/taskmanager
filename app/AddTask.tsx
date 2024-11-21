@@ -9,6 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams } from 'expo-router';
 import uuid from 'react-native-uuid';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
+import moment from 'moment';
 
 const AddTask = () => {
   const [title, onChangeTitle] = useState('');
@@ -36,6 +37,7 @@ const AddTask = () => {
           onChangeTitle(existingTask.title);
           onChangeSTitle(existingTask.sTitle);
           setDate(existingTask.date ? new Date(existingTask.date) : null);
+          console.log(existingTask)
           setStartTime(existingTask.startTime ? new Date(existingTask.startTime) : null);
           setEndTime(existingTask.endTime ? new Date(existingTask.endTime) : null);
         }
@@ -129,7 +131,7 @@ const AddTask = () => {
               <Text>Date</Text>
               <TextInput
                 style={styles.input}
-                value={date ? date.toDateString() : ''}
+                value={date ? date.toDateString() : moment().format("MMM Do YY")}
                 placeholder="Select Date"
                 editable={false}
               />
@@ -151,7 +153,7 @@ const AddTask = () => {
               <Text>Start Time</Text>
               <TextInput
                 style={styles.input}
-                value={startTime ? startTime.toLocaleTimeString() : ''}
+                value={startTime ? startTime.toLocaleTimeString() : moment().format('LT')}
                 placeholder="Select Start Time"
                 editable={false}
               />

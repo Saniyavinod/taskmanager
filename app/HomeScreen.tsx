@@ -11,6 +11,8 @@ import { router, useLocalSearchParams, useRouter } from 'expo-router';
 import { styles } from './styles/HomeScreenStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import TaskCard from '@/components/TaskCard';
+import { buttonOptions } from './data';
+
 
 type HeadingsType = {
   heading: string;
@@ -113,6 +115,7 @@ export default function HomeScreen() {
   }, [appIsReady]);
 
   const handleButtonPress = (button: string) => {
+    console.log(button)
     setPressedButton(button);
   };
 
@@ -146,38 +149,24 @@ export default function HomeScreen() {
             </View>
 
             <View style={styles.notificationsContainer}>
-              <TouchableOpacity
+              {
+                buttonOptions.map((item,index)=>(
+                  <TouchableOpacity key={index}
                 style={styles.notificationItem}
                 activeOpacity={0.7}
-                onPress={() => handleButtonPress('all')}
+                onPress={() => handleButtonPress(item.buttonText)}
               >
-                <Text style={[styles.notificationText, { color: pressedButton === 'all' ? 'blue' : 'black' }]}>All</Text>
+                <Text style={[styles.notificationText, { color: pressedButton === item.buttonText ? 'blue' : 'black' }]}>{item.buttonText}</Text>
                 <View style={styles.notificationBadge}>
                   <Text style={styles.notificationCount}>{notifications.all}</Text>
                 </View>
               </TouchableOpacity>
 
-              <TouchableOpacity
-                style={styles.notificationItem}
-                activeOpacity={0.7}
-                onPress={() => handleButtonPress('open')}
-              >
-                <Text style={[styles.notificationText, { color: pressedButton === 'open' ? 'blue' : 'black' }]}>Open</Text>
-                <View style={styles.notificationBadge}>
-                  <Text style={styles.notificationCount}>{notifications.open}</Text>
-                </View>
-              </TouchableOpacity>
+                ))
+              }
+              
 
-              <TouchableOpacity
-                style={styles.notificationItem}
-                activeOpacity={0.7}
-                onPress={() => handleButtonPress('closed')}
-              >
-                <Text style={[styles.notificationText, { color: pressedButton === 'closed' ? 'blue' : 'black' }]}>Closed</Text>
-                <View style={styles.notificationBadge}>
-                  <Text style={styles.notificationCount}>{notifications.closed}</Text>
-                </View>
-              </TouchableOpacity>
+             
             </View>
 
             <FlatList

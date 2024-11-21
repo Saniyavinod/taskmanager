@@ -5,6 +5,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import AddTask from "./AddTask";
 import HomeScreen from "./HomeScreen";
+import { stackOptions } from "./data";
 
 const Stack = createStackNavigator();
 
@@ -18,20 +19,20 @@ export default function App() {
             headerShown: true, 
           }}
         >
-          <Stack.Screen
-            name="HomeScreen"
-            component={HomeScreen}
+
+          {
+            stackOptions.map((item,index)=>(
+              <Stack.Screen key={index}
+            name={item.name}
+            component={item.component}
             options={{
               headerTitle: "Home", 
             }}
           />
-          <Stack.Screen
-            name="AddTask"
-            component={AddTask}
-            options={{
-              headerTitle: "Add Task", 
-            }}
-          />
+
+            ))
+          }
+          
         </Stack.Navigator>
       </NavigationContainer>
     </GestureHandlerRootView>
