@@ -87,10 +87,6 @@ export const styles = StyleSheet.create({
       flex: 1,
       padding: 36,
       alignItems: 'center',
-      paddingBottom:600
-
-
-
     },
     input: {
       height: 40,
@@ -102,6 +98,7 @@ export const styles = StyleSheet.create({
     form:{
       width:"100%",
       display:"flex",
-      rowGap:5
+      rowGap:5,
+      flex:1
     }
   });

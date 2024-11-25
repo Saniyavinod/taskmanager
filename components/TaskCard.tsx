@@ -8,7 +8,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Entypo from '@expo/vector-icons/Entypo';
 import moment from 'moment';
 
-const TaskCard = ({ taskname, description, taskId, setRefetch, date, startTime, endTime }: { taskname: string; description: string, taskId: string, setRefetch: Dispatch<SetStateAction<boolean>>, date: Date, startTime: Date, endTime: Date }) => {
+type indiTask = {
+  id:string
+  taskname:string;
+  description:string;
+  startTime:Date
+  endTime:Date
+  date:Date
+}
+
+const TaskCard = ({id,setIndiTask,setBottomSheetVisible,taskname, description, taskId, setRefetch, date, startTime, endTime }: {id:string;setIndiTask:Dispatch<SetStateAction<indiTask | null>>;setBottomSheetVisible:Dispatch<SetStateAction<boolean>>; taskname: string; description: string, taskId: string, setRefetch: Dispatch<SetStateAction<boolean>>, date: Date, startTime: Date, endTime: Date }) => {
   const [completed, setCompleted] = useState(false);
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
@@ -29,15 +38,18 @@ const TaskCard = ({ taskname, description, taskId, setRefetch, date, startTime, 
     const tasksList = storedTasks ? JSON.parse(storedTasks) : [];
 
     const updatedTasks = tasksList.map((item: {
-      completed: any; id: string 
+      status: any; id: string 
 }) => {
       if (item.id === taskId) {
-        item.completed = !item.completed;
+        console.log(item.status)
+        item.status = item.status === "Close" ? "Open" : "Close";
       }
       return item;
     });
     await AsyncStorage.setItem('tasks', JSON.stringify(updatedTasks));
   };
+
+  
 
   useEffect(() => {
     const checkCompleted = async () => {
@@ -45,11 +57,25 @@ const TaskCard = ({ taskname, description, taskId, setRefetch, date, startTime, 
       const tasksList = storedTasks ? JSON.parse(storedTasks) : [];
       const currentTask = tasksList.find((item: { id: string }) => item.id === taskId);
       if (currentTask) {
-        setCompleted(currentTask.completed);
+        setCompleted(currentTask.status==="Close");
       }
     };
     checkCompleted();
   }, [taskId]);
+
+  const handleEditTask = async(taskname: string, description: string, date: Date, startTime: Date, endTime: Date) =>{
+    console.log("Here")
+    setBottomSheetVisible(true)
+    const indiTask = {
+      id,
+      taskname,
+      description,
+      startTime,
+      endTime,
+      date
+    }
+    setIndiTask(indiTask)
+  }
 
   return (
     <View style={styles.cardContainer}>
@@ -65,7 +91,7 @@ const TaskCard = ({ taskname, description, taskId, setRefetch, date, startTime, 
       <View style={[styles.content2]}>
         <Text style={{ fontFamily: 'Poppins_400Regular' }}>{moment(date).format("DD") === moment(Date.now()).format("DD") ? "Today" : moment(date).format("Do")}  {moment(startTime).format('LT')}-{moment(endTime).format('LT')}</Text>
         <View style={{ flexDirection: "row", gap: 10 }}>
-          <Entypo name="edit" size={24} color="black" onPress={() => router.replace(`/AddTask?taskname=${taskname}&description=${description}&idOfTask=${taskId}`)} />
+          <Entypo name="edit" size={24} color="black" onPress={()=>handleEditTask(taskname,description,date,startTime,endTime)} />
           <AntDesign name="delete" size={24} color="black" onPress={() => handleDelete(taskId)} />
         </View>
       </View>
