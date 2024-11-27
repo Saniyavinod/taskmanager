@@ -1,9 +1,7 @@
 import React, { Dispatch, SetStateAction, useState, useEffect } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { Poppins_400Regular, useFonts } from '@expo-google-fonts/poppins';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Entypo from '@expo/vector-icons/Entypo';
 import moment from 'moment';
@@ -19,10 +17,7 @@ type indiTask = {
 
 const TaskCard = ({handleButtonPress,pressedButton,setNotifications,id,setIndiTask,setBottomSheetVisible,taskname, description, taskId, setRefetch, date, startTime, endTime }:{handleButtonPress: (button: string) => Promise<void>;pressedButton:string|null; setNotifications:Dispatch<SetStateAction<{ all: number; open: number; closed: number; }>>;id:string;setIndiTask:Dispatch<SetStateAction<indiTask | null>>;setBottomSheetVisible:Dispatch<SetStateAction<boolean>>; taskname: string; description: string, taskId: string, setRefetch: Dispatch<SetStateAction<boolean>>, date: Date, startTime: Date, endTime: Date }) => {
   const [completed, setCompleted] = useState(false);
-  const [fontsLoaded] = useFonts({
-    Poppins_400Regular,
-  });
-  const router = useRouter();
+ 
   const handleDelete = async (deleteTaskId: string) => {
     const storedTasks = await AsyncStorage.getItem('tasks');
     const tasksList = storedTasks ? JSON.parse(storedTasks) : [];

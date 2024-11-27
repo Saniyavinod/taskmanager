@@ -44,12 +44,12 @@ export default function Modal({ setRefetch, setBottomSheetVisible, indiTask, set
   const { taskname, description } = useLocalSearchParams();
   const [idOfTask, setIdOfTask] = useState("");
 
-  // Initialize state only when it's empty (null) to prevent resetting to current time
+  
   useEffect(() => {
     const currentDate = new Date();
-    if (!date) setDate(currentDate); // Set date only if not already set
-    if (!startTime) setStartTime(currentDate); // Set startTime only if not already set
-    if (!endTime) setEndTime(currentDate); // Set endTime only if not already set
+    if (!date) setDate(currentDate); 
+    if (!startTime) setStartTime(currentDate); 
+    if (!endTime) setEndTime(currentDate); 
   }, [date, startTime, endTime]);
 
   // Fetch task details if editing an existing task
@@ -161,7 +161,7 @@ export default function Modal({ setRefetch, setBottomSheetVisible, indiTask, set
   const handleEndTimeChange = (event: any, selectedTime: Date | undefined) => {
     setOpenEndTimePicker(false);
     if (event.type === "set" && selectedTime) {
-      setEndTime(selectedTime); // Set the selected end time
+      setEndTime(selectedTime); 
     }
   };
 

@@ -6,7 +6,7 @@ import moment from 'moment';
 import { styles } from './styles/HomeScreenStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import TaskCard from '@/components/TaskCard';
-import Modal from '@/components/Modal'; // Import Modal component
+import Modal from '@/components/Modal'; 
 import { buttonOptions } from './data';
 import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
 

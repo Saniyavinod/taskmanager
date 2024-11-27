@@ -5,7 +5,7 @@ import Animated, {
   useAnimatedStyle,
   withTiming,
 } from 'react-native-reanimated';
-import ShimmerPlaceholder from 'react-native-shimmer-placeholder'; // Import shimmer
+import ShimmerPlaceholder from 'react-native-shimmer-placeholder'; 
 
 const HeadingCard = ({
   heading,
@@ -16,17 +16,17 @@ const HeadingCard = ({
   description: string;
   loading: boolean;
 }) => {
-  const opacity = useSharedValue(0); // Shared value for opacity animation
-  const translateX = useSharedValue(200); // Start off-screen to the right
+  const opacity = useSharedValue(0); 
+  const translateX = useSharedValue(200); 
 
-  // Start animations whenever heading/description changes
+  
   useEffect(() => {
     if (!loading) {
-      opacity.value = 0; // Reset opacity when loading finishes
-      translateX.value = 200; // Start position (off-screen to the right)
+      opacity.value = 0; 
+      translateX.value = 200; 
     
-      opacity.value = withTiming(1, { duration: 400 }); // Fade in
-      translateX.value = withTiming(0, { duration: 400 }); // Slide in from right to left
+      opacity.value = withTiming(1, { duration: 400 }); 
+      translateX.value = withTiming(0, { duration: 400 }); 
     }
   }, [heading, description, loading]);
 
@@ -34,7 +34,7 @@ const HeadingCard = ({
   const animatedStyle = useAnimatedStyle(() => {
     return {
       opacity: opacity.value,
-      transform: [{ translateX: translateX.value }], // Slide in from right
+      transform: [{ translateX: translateX.value }], 
     };
   });
 
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   shimmer: {
-    height: 120, // Adjust this based on the size of the card
+    height: 120, 
     width: '100%',
     borderRadius: 8,
   },

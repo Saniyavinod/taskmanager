@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+
 import HomeScreen from "./HomeScreen";
 import { Poppins_400Regular, useFonts } from '@expo-google-fonts/poppins';
 import * as SplashScreen from 'expo-splash-screen';
