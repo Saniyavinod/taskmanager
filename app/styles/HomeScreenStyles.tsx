@@ -100,5 +100,16 @@ export const styles = StyleSheet.create({
       display:"flex",
       rowGap:5,
       flex:1
-    }
+    },
+    noDataContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 20,
+    },
+    noDataText: {
+      fontSize: 18,
+      color: 'gray',
+      fontFamily: 'Poppins_400Regular',
+    },
   });

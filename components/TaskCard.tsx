@@ -17,7 +17,7 @@ type indiTask = {
   date:Date
 }
 
-const TaskCard = ({id,setIndiTask,setBottomSheetVisible,taskname, description, taskId, setRefetch, date, startTime, endTime }: {id:string;setIndiTask:Dispatch<SetStateAction<indiTask | null>>;setBottomSheetVisible:Dispatch<SetStateAction<boolean>>; taskname: string; description: string, taskId: string, setRefetch: Dispatch<SetStateAction<boolean>>, date: Date, startTime: Date, endTime: Date }) => {
+const TaskCard = ({setNotifications,id,setIndiTask,setBottomSheetVisible,taskname, description, taskId, setRefetch, date, startTime, endTime }: {setNotifications:Dispatch<SetStateAction<{ all: number; open: number; closed: number; }>>;id:string;setIndiTask:Dispatch<SetStateAction<indiTask | null>>;setBottomSheetVisible:Dispatch<SetStateAction<boolean>>; taskname: string; description: string, taskId: string, setRefetch: Dispatch<SetStateAction<boolean>>, date: Date, startTime: Date, endTime: Date }) => {
   const [completed, setCompleted] = useState(false);
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
@@ -43,6 +43,19 @@ const TaskCard = ({id,setIndiTask,setBottomSheetVisible,taskname, description, t
       if (item.id === taskId) {
         console.log(item.status)
         item.status = item.status === "Close" ? "Open" : "Close";
+        const rest = tasksList.length
+        ? {
+          open: tasksList.filter((task:{status:string}) => task.status === 'Open').length,
+          closed: tasksList.filter((task:{status:string}) => task.status === 'Close').length,
+        }
+        : { open: 0, closed: 0 };
+
+        setNotifications({
+          all: tasksList.length,
+          open: rest.open,
+          closed: rest.closed,
+        });
+        
       }
       return item;
     });
