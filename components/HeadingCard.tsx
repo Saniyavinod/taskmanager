@@ -5,6 +5,7 @@ import Animated, {
   useAnimatedStyle,
   withTiming,
 } from 'react-native-reanimated';
+import ShimmerPlaceholder from 'react-native-shimmer-placeholder'; // Import shimmer
 
 const HeadingCard = ({
   heading,
@@ -20,12 +21,14 @@ const HeadingCard = ({
 
   // Start animations whenever heading/description changes
   useEffect(() => {
-    opacity.value = 0; // Reset opacity
-    translateX.value = 200; // Start position (off-screen to the right)
+    if (!loading) {
+      opacity.value = 0; // Reset opacity when loading finishes
+      translateX.value = 200; // Start position (off-screen to the right)
     
-    opacity.value = withTiming(1, { duration: 400 }); // Fade in
-    translateX.value = withTiming(0, { duration: 400 }); // Slide in from right to left
-  }, [heading, description]);
+      opacity.value = withTiming(1, { duration: 400 }); // Fade in
+      translateX.value = withTiming(0, { duration: 400 }); // Slide in from right to left
+    }
+  }, [heading, description, loading]);
 
   // Define animated styles
   const animatedStyle = useAnimatedStyle(() => {
@@ -35,8 +38,14 @@ const HeadingCard = ({
     };
   });
 
+  // Only show shimmer effect when loading
   if (loading) {
-    return <Text style={styles.headingText}>Loading Data...</Text>;
+    return (
+      <ShimmerPlaceholder
+        style={styles.shimmer}
+        shimmerColors={['#E0E0E0', '#F8F8F8', '#E0E0E0']}
+      />
+    );
   }
 
   return (
@@ -71,6 +80,11 @@ const styles = StyleSheet.create({
   descriptionText: {
     fontSize: 16,
     color: 'black',
+  },
+  shimmer: {
+    height: 120, // Adjust this based on the size of the card
+    width: '100%',
+    borderRadius: 8,
   },
 });
 
