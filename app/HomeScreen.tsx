@@ -216,6 +216,8 @@ export default function HomeScreen() {
                 startTime={item.startTime}
                 endTime={item.endTime}
                 setNotifications={setNotifications}
+                pressedButton={pressedButton}
+                handleButtonPress={handleButtonPress}
               />
             )}
             ListEmptyComponent={

@@ -17,13 +17,12 @@ type indiTask = {
   date:Date
 }
 
-const TaskCard = ({setNotifications,id,setIndiTask,setBottomSheetVisible,taskname, description, taskId, setRefetch, date, startTime, endTime }: {setNotifications:Dispatch<SetStateAction<{ all: number; open: number; closed: number; }>>;id:string;setIndiTask:Dispatch<SetStateAction<indiTask | null>>;setBottomSheetVisible:Dispatch<SetStateAction<boolean>>; taskname: string; description: string, taskId: string, setRefetch: Dispatch<SetStateAction<boolean>>, date: Date, startTime: Date, endTime: Date }) => {
+const TaskCard = ({handleButtonPress,pressedButton,setNotifications,id,setIndiTask,setBottomSheetVisible,taskname, description, taskId, setRefetch, date, startTime, endTime }:{handleButtonPress: (button: string) => Promise<void>;pressedButton:string|null; setNotifications:Dispatch<SetStateAction<{ all: number; open: number; closed: number; }>>;id:string;setIndiTask:Dispatch<SetStateAction<indiTask | null>>;setBottomSheetVisible:Dispatch<SetStateAction<boolean>>; taskname: string; description: string, taskId: string, setRefetch: Dispatch<SetStateAction<boolean>>, date: Date, startTime: Date, endTime: Date }) => {
   const [completed, setCompleted] = useState(false);
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
   });
   const router = useRouter();
-
   const handleDelete = async (deleteTaskId: string) => {
     const storedTasks = await AsyncStorage.getItem('tasks');
     const tasksList = storedTasks ? JSON.parse(storedTasks) : [];
@@ -60,6 +59,9 @@ const TaskCard = ({setNotifications,id,setIndiTask,setBottomSheetVisible,tasknam
       return item;
     });
     await AsyncStorage.setItem('tasks', JSON.stringify(updatedTasks));
+    if(pressedButton){
+      handleButtonPress(pressedButton)
+    }
   };
 
   
@@ -98,7 +100,7 @@ const TaskCard = ({setNotifications,id,setIndiTask,setBottomSheetVisible,tasknam
           <Text style={[styles.descriptionText, { fontFamily: 'Poppins_400Regular' }]}>{description}</Text>
         </View>
         <TouchableOpacity style={[styles.content21]} onPress={handleCompletion}>
-          <AntDesign name={completed ? "checkcircle" : "checkcircleo"} size={24} color={completed ? "black" : "black"} />
+          <AntDesign name={completed ? "checkcircle" : "checkcircleo"} size={24} color={completed ? "blue" : "black"} />
         </TouchableOpacity>
       </View>
       <View style={[styles.content2]}>
