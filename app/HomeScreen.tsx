@@ -9,7 +9,6 @@ import TaskCard from '@/components/TaskCard';
 import Modal from '@/components/Modal';  // Import Modal component
 import { buttonOptions } from './data';
 
-
 type Task = {
   title: string;
   sTitle: string;

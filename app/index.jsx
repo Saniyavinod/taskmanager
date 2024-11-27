@@ -59,7 +59,7 @@ export default function App() {
               
               name="HomeScreen"
               component={HomeScreen}
-              options={{ headerTitle: "Home" }}
+              options={{ headerTitle: "" }}
             />
           
         </Stack.Navigator>
