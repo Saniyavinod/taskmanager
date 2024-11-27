@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect, Dispatch, SetStateAction } from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity, Alert } from 'react-native';
 import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet';
-import { styles } from '../../my-appT/app/styles/HomeScreenStyles'
+import { styles } from '../app/styles/HomeScreenStyles'
 import { useRouter } from 'expo-router';
 import CustomBottomSheet from '@/components/CustomBottomSheet';
 import AsyncStorage from '@react-native-async-storage/async-storage';
