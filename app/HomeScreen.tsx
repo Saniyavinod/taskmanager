@@ -91,6 +91,7 @@ export default function HomeScreen() {
   }, []);
 
   useEffect(() => {
+    if(headings.length>0){
     const intervalId = setInterval(() => {
       setHeadingIndex((prevIndex) => {
         const nextIndex = prevIndex === headings.length - 1 ? 0 : prevIndex + 1;
@@ -101,7 +102,7 @@ export default function HomeScreen() {
       });
     }, 5000);
     return () => clearInterval(intervalId);
-  }, [headings]);
+  }}, [headings]);
 
   const handleButtonPress = async (button: string) => {
     setPressedButton(button);

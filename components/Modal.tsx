@@ -111,12 +111,14 @@ export default function Modal({ setRefetch, setBottomSheetVisible, indiTask, set
     // });
 
     // Reset form fields after submission
-    onChangeTitle('');
-    onChangeSTitle('');
-    setDate(null);
-    setStartTime(null);
-    setEndTime(null);
-    setIndiTask(null);
+    // onChangeTitle('');
+    // onChangeSTitle('');
+    // setDate(null);
+    // setStartTime(null);
+    // setEndTime(null);
+    // setIndiTask(null);
+    setBottomSheetVisible(false)
+    setRefetch((prev)=>!prev)
   };
 
   const handlePresentModalPress = () => {
