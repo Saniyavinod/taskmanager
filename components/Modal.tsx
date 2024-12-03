@@ -149,14 +149,14 @@ export default function Modal({ setRefetch, setBottomSheetVisible, indiTask, set
   const handleDateChange = (event: any, selectedDate: Date | undefined) => {
     setOpenDatePicker(false);
     if (event.type === "set" && selectedDate) {
-      setDate(selectedDate); // Set the selected date
+      setDate(selectedDate); 
     }
   };
 
   const handleStartTimeChange = (event: any, selectedTime: Date | undefined) => {
     setOpenStartTimePicker(false);
     if (event.type === "set" && selectedTime) {
-      setStartTime(selectedTime); // Set the selected start time
+      setStartTime(selectedTime); 
     }
   };
 

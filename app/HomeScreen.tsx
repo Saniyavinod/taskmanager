@@ -44,11 +44,11 @@ export default function HomeScreen() {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const [refetch, setRefetch] = useState(false);
   const [indiTask, setIndiTask] = useState<indiTask | null>(null);
-  const [loading, setLoading] = useState(true); // Loading for tasks
-  const [loadingHeadings, setLoadingHeadings] = useState(true); // Loading for headings
+  const [loading, setLoading] = useState(true); 
+  const [loadingHeadings, setLoadingHeadings] = useState(true); 
 
   const loadTasks = async () => {
-    setLoading(true); // Set loading to true while fetching
+    setLoading(true); 
     const storedTasks = await AsyncStorage.getItem('tasks');
     if (storedTasks) {
       const list: Task[] = JSON.parse(storedTasks);
@@ -66,7 +66,7 @@ export default function HomeScreen() {
         closed: rest.closed,
       });
     }
-    setLoading(false); // Set loading to false once fetched
+    setLoading(false); 
   };
 
   useEffect(() => {
@@ -75,7 +75,7 @@ export default function HomeScreen() {
 
   useEffect(() => {
     async function fetchHeadings() {
-      setLoadingHeadings(true); // Set loading for headings
+      setLoadingHeadings(true); 
       try {
         const response = await fetch('https://67333b5d2a1b1a4ae112a811.mockapi.io/api/p/carddara');
         const data = await response.json();
@@ -84,7 +84,7 @@ export default function HomeScreen() {
         console.error('Error fetching headings:', error);
       } finally {
         await new Promise((resolve)=>(setTimeout(resolve,5000)))
-        setLoadingHeadings(false); // Stop loading after fetching
+        setLoadingHeadings(false); 
       }
     }
     fetchHeadings();
