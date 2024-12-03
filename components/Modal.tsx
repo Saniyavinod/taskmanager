@@ -105,18 +105,7 @@ export default function Modal({ setRefetch, setBottomSheetVisible, indiTask, set
     }
 
     await AsyncStorage.setItem('tasks', JSON.stringify(tasksList));
-    // router.replace({
-    //   pathname: "/HomeScreen",
-    //   params: { taskUpdated: "true" },
-    // });
-
-    // Reset form fields after submission
-    // onChangeTitle('');
-    // onChangeSTitle('');
-    // setDate(null);
-    // setStartTime(null);
-    // setEndTime(null);
-    // setIndiTask(null);
+   
     setBottomSheetVisible(false)
     setRefetch((prev)=>!prev)
   };
@@ -130,7 +119,7 @@ export default function Modal({ setRefetch, setBottomSheetVisible, indiTask, set
       const indiTaskData = await AsyncStorage.getItem('indiTask');
       if (indiTaskData) {
         const data = JSON.parse(indiTaskData);
-        // Handle data if needed
+        
       }
     };
     getIndiTaskData();

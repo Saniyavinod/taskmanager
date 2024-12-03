@@ -30,7 +30,7 @@ const HeadingCard = ({
     }
   }, [heading, description, loading]);
 
-  // Define animated styles
+  
   const animatedStyle = useAnimatedStyle(() => {
     return {
       opacity: opacity.value,
@@ -38,7 +38,7 @@ const HeadingCard = ({
     };
   });
 
-  // Only show shimmer effect when loading
+ 
   if (loading) {
     return (
       <ShimmerPlaceholder
