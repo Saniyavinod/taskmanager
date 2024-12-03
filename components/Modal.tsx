@@ -105,10 +105,10 @@ export default function Modal({ setRefetch, setBottomSheetVisible, indiTask, set
     }
 
     await AsyncStorage.setItem('tasks', JSON.stringify(tasksList));
-    router.replace({
-      pathname: "/HomeScreen",
-      params: { taskUpdated: "true" },
-    });
+    // router.replace({
+    //   pathname: "/HomeScreen",
+    //   params: { taskUpdated: "true" },
+    // });
 
     // Reset form fields after submission
     onChangeTitle('');

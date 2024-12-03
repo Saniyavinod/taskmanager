@@ -83,6 +83,7 @@ export default function HomeScreen() {
       } catch (error) {
         console.error('Error fetching headings:', error);
       } finally {
+        await new Promise((resolve)=>(setTimeout(resolve,5000)))
         setLoadingHeadings(false); // Stop loading after fetching
       }
     }
@@ -95,10 +96,10 @@ export default function HomeScreen() {
         const nextIndex = prevIndex === headings.length - 1 ? 0 : prevIndex + 1;
         setHeading(headings[nextIndex]?.heading || '');
         setDescription(headings[nextIndex]?.description || '');
+        console.log("Heading",headings[nextIndex].heading) 
         return nextIndex;
       });
     }, 5000);
-
     return () => clearInterval(intervalId);
   }, [headings]);
 
@@ -121,7 +122,7 @@ export default function HomeScreen() {
       <View style={styles.container}>
         {/* Show shimmer effect while fetching headings */}
         {loadingHeadings ? (
-          <ShimmerPlaceholder style={{ height: 80, width: '100%', borderRadius: 8, marginBottom: 20 }} />
+          <ShimmerPlaceholder style={{ height: 100, width: '100%', borderRadius: 8, marginBottom: 20, marginTop:40 }} />
         ) : (
           headings.length > 0 && (
             <HeadingCard heading={heading} description={description} loading={loadingHeadings} />
@@ -171,17 +172,9 @@ export default function HomeScreen() {
           </View>
 
           {/* Show shimmer effect while fetching tasks */}
-          {loading ? (
-            <ShimmerPlaceholder
-              style={{
-                height: 80,
-                width: '100%',
-                borderRadius: 8,
-                marginBottom: 20,
-              }}
-              shimmerColors={['#E0E0E0', '#F8F8F8', '#E0E0E0']}
-            />
-          ) : (
+          
+            
+          
             <FlatList
               style={{ width: '100%' }}
               contentContainerStyle={{ paddingBottom: 100 }}
@@ -210,7 +203,7 @@ export default function HomeScreen() {
                 </View>
               }
             />
-          )}
+         
         </View>
         {bottomSheetVisible && (
           <Modal
